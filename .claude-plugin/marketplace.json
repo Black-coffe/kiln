@@ -5,14 +5,14 @@
   },
   "metadata": {
     "description": "Marketplace catalogue for Kiln. The repository is both the marketplace and the plugin: the plugin lives at the repository root, so `source` is `./`.",
-    "version": "0.1.0"
+    "version": "0.1.1"
   },
   "plugins": [
     {
       "name": "kiln",
       "source": "./",
       "description": "A portable content doctrine for search and AI answer engines. Gates outrank the writer: a draft either passes the pre-publication checks or is rejected.",
-      "version": "0.1.0",
+      "version": "0.1.1",
       "author": {
         "name": "Kiln contributors"
       },

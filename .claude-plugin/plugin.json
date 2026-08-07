@@ -1,7 +1,7 @@
 {
   "name": "kiln",
   "displayName": "Kiln",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "A portable content doctrine for search and AI answer engines. Gates outrank the writer: a draft either passes the pre-publication checks or is rejected.",
   "author": {
     "name": "Kiln contributors"
