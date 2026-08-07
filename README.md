@@ -154,7 +154,7 @@ revertible.
 
 ```bash
 # 1. Install as a Claude Code plugin
-claude plugin marketplace add <org>/kiln
+claude plugin marketplace add Black-coffe/kiln
 claude plugin install kiln@kiln --scope project
 
 # 2. Onboard the project: Kiln gathers everything derivable on its own

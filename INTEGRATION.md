@@ -101,7 +101,7 @@ Declaratively, committed to the repository so the whole team gets it:
 // .claude/settings.json
 {
   "extraKnownMarketplaces": {
-    "kiln": { "source": { "source": "github", "repo": "<org>/kiln" } }
+    "kiln": { "source": { "source": "github", "repo": "Black-coffe/kiln" } }
   },
   "enabledPlugins": ["kiln@kiln"]
 }
@@ -110,7 +110,7 @@ Declaratively, committed to the repository so the whole team gets it:
 Each team member is prompted to install on first trusting the folder. Or imperatively:
 
 ```bash
-claude plugin marketplace add <org>/kiln
+claude plugin marketplace add Black-coffe/kiln
 claude plugin install kiln@kiln --scope project
 ```
 
@@ -332,7 +332,7 @@ jobs:
       - uses: anthropics/claude-code-action@v1
         with:
           anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
-          plugin_marketplaces: "https://github.com/<org>/kiln.git"
+          plugin_marketplaces: "https://github.com/Black-coffe/kiln.git"
           plugins: "kiln@kiln"
           prompt: "/kiln:audit --scheduled"
           claude_args: |
