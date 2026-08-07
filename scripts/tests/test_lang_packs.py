@@ -33,9 +33,10 @@ import draft_score as ds  # noqa: E402
 DOCTRINE = Path(__file__).resolve().parents[2] / "doctrine"
 UK_PACK = DOCTRINE / "lang" / "uk.md"
 EN_PACK = DOCTRINE / "lang" / "en.md"
+RU_PACK = DOCTRINE / "lang" / "ru.md"
 TEMPLATE = DOCTRINE / "lang" / "_template.md"
 
-SHIPPED_PACKS = [UK_PACK, EN_PACK]
+SHIPPED_PACKS = [UK_PACK, EN_PACK, RU_PACK]
 
 
 def _pack_meta(path: Path) -> dict:
