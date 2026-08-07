@@ -48,6 +48,64 @@ Rules for filling it in:
 
 ---
 
+## 2026-08-07 · RC-2026-001 · Russian language pack (`ru`) added
+
+|                            |                                                                                                                                                    |
+| -------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Class**                  | rule_added                                                                                                                                         |
+| **Loop**                   | n/a                                                                                                                                                |
+| **Rules**                  | `LANG-RU-01…09`; pack-internal `RU-01…04` (traps), `RU-10…23` (typography), `RU-30…37` (metrics), `RU-40…45` (judge questions)                     |
+| **Sections**               | `lang/ru.md` (new), `lang/uk.md` §9 (referenced, unchanged)                                                                                        |
+| **Evidence**               | ru.wikipedia «Википедия:Признаки сгенерированности текста», read in full 2026-08-07; the mandate for the pack in `lang/uk.md` §9                   |
+| **Attribution confidence** | medium — a collectively maintained practitioner list, not a controlled measurement                                                                 |
+| **Metric**                 | override rate per `LANG-RU-NN` in `.kiln/rules-stats.json`, once a project publishes `ru`                                                          |
+| **Baseline → target**      | no baseline; §8 calibration is the first measurement                                                                                               |
+| **Verification**           | pending                                                                                                                                            |
+| **Verified on**            | —                                                                                                                                                  |
+| **Outcome**                | pending                                                                                                                                            |
+
+Nine sets, 84 entries. Seven required plus two pack-local: `bureaucratic_constructions` (канцелярит,
+a native Russian register with its own editorial literature) and `technical_defects_ru`, the only
+set permitted to block.
+
+**What is different from `uk.md`, and why it matters.** Russian has a collectively maintained marker
+list and Ukrainian has none. That list was opened and read rather than cited through a research
+report, so entries drawn from it carry `status: observed` where the Ukrainian equivalents carry
+`hypothesis`. `uk.md` §9-6 anticipated exactly this. `observed` still does not mean measured, and
+§11-4 of the new pack records the specific risk that the word will be read as though it did.
+
+**Refused deliberately: a «ukrainianisms» set.** It is the obvious mirror of `uk.md` 3.8 and
+`uk.md` §9-2 rules it out — Ukrainian influence on Russian in Ukraine is ordinary regional usage,
+and a pack treating it as a defect would flag correct Russian and sand off the cultural nuance P4
+names as the strongest human signal. What the pack does carry is a character-inventory rule: `і`,
+`ї`, `є`, `ґ` are not letters of the Russian alphabet, which is orthography rather than an opinion
+about register, and on a site producing `ru` alongside `uk` it is the likeliest pipeline defect.
+
+### Negative results (P15)
+
+**Eye review missed three defects that a required positive/negative case caught immediately.** All
+three had been read and approved by a human before the fixtures were written:
+
+1. `(ключев|поворотн)(ый|ым|ого) момент` matched **nothing**. The two stems take different endings —
+   «ключев*ой*», «поворотн*ый*» — and a shared alternation matched neither.
+2. `(рекомендуем|советуем) (проконсультироваться|обратиться) (с|к) …` matched **nothing** in its
+   most common form: the natural Russian is «со специалистом», and the pattern demanded `с`.
+3. `^Данн(ый|ая|ое|ые)\s` would have fired on **correct writing**: «Данные обновлены 07.08.2026»,
+   where «данные» is the noun *data*. Narrowed to the singular.
+
+Two dead rules and one false-positive generator, none visible on reading. This is the third recorded
+instance of the same class after the Ukrainian homoglyph guard and the mis-keyed set names, and it is
+the argument for `scripts/tests/test_lang_ru.py::test_every_pattern_has_a_case`, which fails the
+suite when an entry is added without a fixture.
+
+**Also recorded, against the template rather than the pack:** `lang/_template.md` §2.1 shows
+`anaphora_openers` carrying `severity: BLOCK`, and `rules_lint.py` check 9 errors on any set
+declaring BLOCK without `default_status: deterministic`. A pack that follows the template literally
+does not build. Not fixed here — amending the shared contract is its own PR under P10. Open in
+`lang/ru.md` §11-1.
+
+---
+
 ## 2026-08-07 · RC-2026-000 · Doctrine v0.1.0 authored
 
 |                            |                                                                                                                                                                                                                         |
