@@ -26,8 +26,31 @@ KILN_DIR="$PROJECT_DIR/.kiln"
 
 input=$(cat)
 
+# Cheap pre-filter, deliberately BEFORE the jq requirement.
+#
+# This hook matches every Bash call, and the jq check used to run first — so on a machine without
+# jq, `git status` exited 2 and the operator's session was hard-blocked on every command. Verified
+# by running the hook with a plain `{"tool_name":"Bash","tool_input":{"command":"git status"}}`
+# payload and an emptied PATH.
+#
+# That is not a gate being strict, it is a gate being uninstalled: the predictable response is to
+# disable the plugin, and a disabled gate enforces nothing at all. The doctrine's own argument for
+# fail-closed (P0, and the advisory-gate precedent in `11-self-learning.md`) assumes the gate
+# survives contact with the team.
+#
+# The filter does not weaken the guarantee. It answers only "could this payload possibly be a
+# publishing action?" using grep on the raw JSON, and it is deliberately over-inclusive: any
+# occurrence of the word anywhere in the payload, and any Write/Edit carrying a file_path, still
+# fall through to the strict path where jq is required and absence fails closed. What it lets past
+# is the case where the payload mentions publishing nowhere and touches no file — which is not a
+# publishing action under any reading of the rules below.
+case "$input" in
+  *publish*|*Publish*|*PUBLISH*|*file_path*) ;;
+  *) exit 0 ;;
+esac
+
 command -v jq >/dev/null 2>&1 || {
-  printf 'Kiln: jq is not installed, so the publication gate cannot run. Install jq: without it nothing enforces the gate and the doctrine is advisory again.\n' >&2
+  printf 'Kiln: jq is not installed, so the publication gate cannot run on an action that may be a publication. Install jq: without it nothing enforces the gate and the doctrine is advisory again.\n' >&2
   exit 2
 }
 
