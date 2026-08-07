@@ -1,0 +1,23 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.venv/
+venv/
+
+# Project state written into a consuming repository.
+# Kiln's own repo never carries a .kiln/ directory: it belongs to the site being worked on,
+# and committing one here would ship somebody's corpus map and review logs.
+.kiln/
+
+# Session handoffs. Both forms are needed: a pattern containing a slash is anchored to the
+# repository root, so the first line alone misses handoffs written from a nested directory.
+.claude/handoff/
+**/.claude/handoff/
+
+# Local tooling caches
+.impeccable/
+**/.impeccable/
+.DS_Store
+Thumbs.db

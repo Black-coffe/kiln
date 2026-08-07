@@ -1,0 +1,56 @@
+{
+  "name": "kiln",
+  "displayName": "Kiln",
+  "version": "0.1.0",
+  "description": "A portable content doctrine for search and AI answer engines. Gates outrank the writer: a draft either passes the pre-publication checks or is rejected.",
+  "author": {
+    "name": "Kiln contributors"
+  },
+  "homepage": "https://github.com/kiln-doctrine/kiln",
+  "repository": "https://github.com/kiln-doctrine/kiln",
+  "license": "MIT",
+  "keywords": [
+    "content",
+    "seo",
+    "geo",
+    "editorial",
+    "quality-gates",
+    "search-console"
+  ],
+  "hooks": "./hooks/hooks.json",
+  "userConfig": {
+    "gsc_credentials": {
+      "type": "file",
+      "title": "Google Search Console service account key",
+      "description": "Path to the service account JSON with read access to the Search Console property. A path, not the file contents: the credential store is shared with OAuth tokens and caps at roughly 2 KB, which a Google service account key exceeds.",
+      "required": false
+    },
+    "dataforseo_login": {
+      "type": "string",
+      "title": "DataForSEO login",
+      "description": "Account login for SERP, Labs and Trends calls.",
+      "required": false
+    },
+    "dataforseo_password": {
+      "type": "string",
+      "title": "DataForSEO password",
+      "description": "Account password. Stored in the OS credential store.",
+      "sensitive": true,
+      "required": false
+    },
+    "serper_api_key": {
+      "type": "string",
+      "title": "Serper API key",
+      "description": "Optional. Used for interactive one-off SERP lookups where DataForSEO queue latency is unacceptable.",
+      "sensitive": true,
+      "required": false
+    },
+    "firecrawl_api_key": {
+      "type": "string",
+      "title": "Firecrawl API key",
+      "description": "Optional. Second rung of the fetch ladder, after Jina Reader.",
+      "sensitive": true,
+      "required": false
+    }
+  }
+}
