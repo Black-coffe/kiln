@@ -17,7 +17,6 @@
     "quality-gates",
     "search-console"
   ],
-  "hooks": "./hooks/hooks.json",
   "userConfig": {
     "gsc_credentials": {
       "type": "file",
